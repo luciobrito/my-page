@@ -1,7 +1,7 @@
 <template>
-    Home Works!
-    
+    <h1>Not Found - 404</h1>
 </template>
+
 <script>
-document.title = ""
+
 </script>

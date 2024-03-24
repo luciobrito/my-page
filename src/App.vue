@@ -1,9 +1,8 @@
 <script setup>
-
 </script>
 
 <template>
-<p>Back</p>
+<RouterView/>
 </template>
 
 <style scoped>
