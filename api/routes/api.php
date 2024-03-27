@@ -13,7 +13,7 @@ Route::get('/user', function (Request $request) {
 //Rotas Anônimas
 Route::post('register',[UserController::class,'Create']);
 Route::post('login', [AuthController::class,'Login']);
-
+Route::get('user/{username}', [UserController::class, 'Profile']);
 //Rotas autenticadas
 Route::middleware(['auth:api'])->group(function(){
     Route::controller(UserController::class)->group(function(){

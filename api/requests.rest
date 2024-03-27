@@ -1,0 +1,44 @@
+### Variables
+@apiUrl = http://localhost:8000/api
+@authToken = {{tokenAPI.response.body.access_token}}
+
+### Login
+# @name tokenAPI
+POST {{apiUrl}}/login HTTP/1.1
+Content-Type: application/json
+
+{
+"email": "john@email.com",
+"password": "1234"
+}
+###
+
+### GET Users
+GET {{apiUrl}}/users
+
+### GET current auth user
+GET {{apiUrl}}/user/self HTTP/1.1
+Authorization: Bearer {{authToken}}
+
+
+### Create Post
+POST {{apiUrl}}/post HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "title": "Titulo 5",
+    "body": "Lorem Ipsum Dolor Sit Amet 2"
+}
+
+### Get User Posts
+GET {{apiUrl}}/user/posts HTTP/1.1
+Authorization: Bearer {{authToken}}
+
+### Delete Post
+DELETE {{apiUrl}}/post/3
+Authorization: Bearer {{authToken}}
+
+### User profile
+GET {{apiUrl}}/user/johndoe
+
