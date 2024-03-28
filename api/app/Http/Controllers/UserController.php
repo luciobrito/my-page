@@ -24,19 +24,13 @@ class UserController extends Controller
         return Auth::user();
     }
     public function Profile($username){
-        
-        $user_id = 
-        User::select('id')
-        ->where('username', $username)->value('id');
-        if(!$user_id) return response('', 404);
-        
         $user_data = 
-        User::select('name', 'username', 'created_at')
-        ->where('id', $user_id)->first();
-
+        User::select('id','name', 'username', 'created_at')
+        ->where('username', $username)->first();
+        if(!$user_data) return response('', 404);
         $user_posts = 
-        Post::select('title', 'body', 'updated_at')
-        ->where('user_id', $user_id)->get();
+        Post::select('id','title', 'body', 'updated_at')
+        ->where('user_id', $user_data->id)->get();
 
         $response_object = [
             'name' => $user_data->name, 

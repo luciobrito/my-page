@@ -1,6 +1,15 @@
-function DateConvert(str){
-const date = new Date(str);
+export default function DateConvert(str, includeHour) {
+  const date = new Date(str);
 
-var options = {year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric'};
+  var options = includeHour
+    ? {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      }
+    : { year: "numeric", month: "long", day: "numeric" };
 
-return date.toLocaleDateString('pt-BR', options);}
+  return date.toLocaleDateString("pt-BR", options);
+}
