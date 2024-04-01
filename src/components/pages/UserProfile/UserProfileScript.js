@@ -1,27 +1,9 @@
-<template>
-  <div v-if="error.status == 404"><UserNotFound></UserNotFound></div>
-  <div v-else-if="error.status == 500"><error_500></error_500></div>
-  <div v-else-if="loading"><LoadingSpinner></LoadingSpinner></div>
-  <!--Código da página-->
-  <div v-else>
-    <h1>{{ user.name }}</h1>
-    <i>@{{ user.username }}</i>
-    <p>Entrou em: {{ user.joined_in }}</p>
-    <div v-for="post in user.posts" :key="post.id">
-      <h4>{{ post.title }}</h4>
-      <p>Postado em: {{ post.updated_at }}</p>
-      <p>{{ post.body }}</p>
-    </div>
-  </div>
-</template>
-
-<script>
 import { useRoute } from "vue-router";
 import axios from "axios";
-import DateConvert from "../dateConverter";
-import LoadingSpinner from "../components/modules/LoadingSpinner.vue";
-import UserNotFound from "./error/UserNotFound.vue";
-import Error_500 from "./error/Error_500.vue";
+import DateConvert from "../../../dateConverter";
+import LoadingSpinner from "../../modules/LoadingSpinner.vue";
+import UserNotFound from "../../error/UserNotFound.vue";
+import Error_500 from "../../error/Error_500.vue";
 export default {
   components: {
     LoadingSpinner,
@@ -41,7 +23,7 @@ export default {
     };
   },
   methods: {
-    getUserData() {
+    getUserProfileData() {
       this.loading = true;
       const route = useRoute();
       var username = route.params.username;
@@ -67,7 +49,6 @@ export default {
     },
   },
   beforeMount() {
-    this.getUserData();
+    this.getUserProfileData();
   },
 };
-</script>

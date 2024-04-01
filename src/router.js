@@ -1,8 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
-import NotFound from "./components/NotFound.vue";
 import Home from "./components/Home.vue";
 import Login from "./components/Login.vue";
-import UserProfile from "./components/UserProfile.vue";
+import UserProfile from "./components/pages/UserProfile/UserProfile.vue";
 import Error_404 from './components/error/Error_404.vue';
 export const routes = [
   { path: "/", component: Home, name: "home" },

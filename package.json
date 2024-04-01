@@ -9,10 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@material/button": "^14.0.0",
+    "@material/icon-button": "^14.0.0",
+    "@material/textfield": "^14.0.0",
+    "@material/top-app-bar": "^14.0.0",
+    "@material/web": "^1.4.0",
     "axios": "^1.6.8",
     "sass": "^1.72.0",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "vuetify": "^3.5.13"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",

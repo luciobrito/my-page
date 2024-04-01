@@ -16,6 +16,8 @@
     left: 0;
     top: 0;
     overflow: auto;
+    backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
 }
 .loader {
     width: 48px;
@@ -26,6 +28,7 @@
     display: inline-block;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
+    z-index: 5;
     }
 
     @keyframes rotation {

@@ -1,32 +1,40 @@
+
 <template>
+    
 <div class="LoginBackground">
+    <v-card title="Login">
 <form v-on:submit.prevent="submitLogin">
     <div class="loginForm">
-    <label for="email">Email</label>
-    <input type="email" name="" id="">
-    <label for="password">Senha</label>
-    <input type="password" name="" id="">
-    <input type="submit" value="Login">
+        <v-text-field label="Email" type="email" variant="outlined"></v-text-field>
+        <v-text-field label="Senha" type="password" variant="outlined"></v-text-field>
+        <v-btn class="btn-form" color="primary">
+            Login
+        </v-btn>
+        <p style="text-align: center; margin: 0.4rem;">Ainda não tem uma conta? <a href="">Clique aqui</a></p>
     </div>
-</form></div>
+</form></v-card></div>
 </template>
 <style lang="scss">
+.btn-form{
+   width: 100%
+}
 .LoginBackground{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
+  
 }
     .loginForm{
         display: flex;
         justify-content: center;
         align-content: center;
-        flex-direction: column;;
+        flex-direction: column;
+        
     }
     form{
-        background-color: rgb(255, 255, 255);
-        padding: 10px;
+        padding: 10px; width: 20rem;
     }
 </style>
 <script>
