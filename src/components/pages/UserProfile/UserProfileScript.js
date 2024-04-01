@@ -31,7 +31,6 @@ export default {
       setTimeout(() => {
         axios(`/user/${username}`)
           .then((response) => {
-            console.log(response.data);
             this.user = response.data;
             /*Converte a data de ISO para comum */
             this.user.joined_in = DateConvert(response.data.joined_in, false);
@@ -41,7 +40,6 @@ export default {
             });
           })
           .catch((error) => {
-            console.log(error.response.status);
             this.error.status = error.response.status;
           })
           .finally(() => (this.loading = false));
