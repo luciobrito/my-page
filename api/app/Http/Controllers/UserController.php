@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 class UserController extends Controller
-{
+{/*
     public function Create(Request $request){
         $credentials = $request->validate([
             "name"=> "required",
@@ -19,7 +19,7 @@ class UserController extends Controller
         User::create($credentials);
         return response()
         ->json("Usuario criado com sucesso!", 201);
-    }
+    }*/
     public function Self(){
         return Auth::user();
     }

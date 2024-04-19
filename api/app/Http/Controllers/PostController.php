@@ -13,6 +13,7 @@ class PostController extends Controller
             'title' => 'required',
             'body'=> 'required',
             'user_id']);
+        
         $postData['user_id'] = Auth::user()->id;
         if($create = Post::create($postData)) return response()->json('Post criado com sucesso', 201);
         else return response()->json('Não foi possível criar o Post', 500);

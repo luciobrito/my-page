@@ -11,7 +11,7 @@ import * as directives from 'vuetify/directives'
 axios.interceptors.response.use(response => {
     return response.headers['content-type'] === 'application/json' ? response : Promise.reject(response);
   }, error => Promise.reject(error));
-axios.defaults.baseURL = 'http://localhost:5173/api';
+axios.defaults.baseURL = 'http://localhost:4173/api';
 
 
 const myTheme = {

@@ -11,18 +11,18 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');*/
 
 //Rotas Anônimas
-Route::post('register',[UserController::class,'Create']);
-Route::post('login', [AuthController::class,'Login']);
-Route::get('user/{username}', [UserController::class, 'Profile']);
+Route::post('/register',[AuthController::class, 'Register']);
+Route::post('/login', [AuthController::class,'Login']);
+Route::get('/user/{username}', [UserController::class, 'Profile']);
 //Rotas autenticadas
 Route::middleware(['auth:api'])->group(function(){
     Route::controller(UserController::class)->group(function(){
-        Route::get('user/self','self');
+        Route::get('/self','Self');
     });
     Route::controller(PostController::class)->group(function(){
-        Route::post('post', 'Create');
-        Route::get('user/posts', 'AuthUserPosts');
-        Route::delete('post/{id}', 'Delete');
+        Route::post('/post', 'Create');
+        Route::get('/posts/self', 'AuthUserPosts');
+        Route::delete('/post/{id}', 'Delete');
     });
     
 });
