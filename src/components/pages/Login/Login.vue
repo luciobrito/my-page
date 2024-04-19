@@ -7,13 +7,11 @@
             label="Email"
             type="email"
             v-model="login.email"
-            variant="outlined"
           ></v-text-field>
           <v-text-field
             label="Senha"
             type="password"
             v-model="login.password"
-            variant="outlined"
           ></v-text-field>
           <v-btn
             :loading="this.loading"

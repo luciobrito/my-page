@@ -1,0 +1,21 @@
+.form-cadastro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    
+}
+form{
+    width: 100%;
+}
+
+.form-cadastro-card{
+    width: 100%;
+}
+//Se a tela do dispositivo for maior que 900px...
+@media screen and (min-width: 900px) {
+    .form-cadastro-card{
+        width:30%
+    }
+}

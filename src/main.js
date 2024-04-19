@@ -25,6 +25,10 @@ const myTheme = {
 const vuetify = createVuetify({
   components,
   directives,
+  defaults: {
+    //Deixa todos os campos de texto com o estilo "outlined"
+    VTextField: {variant: 'outlined'}
+  },
   theme:{
     defaultTheme: 'myTheme',
     themes:{
