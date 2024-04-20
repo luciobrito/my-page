@@ -1,6 +1,7 @@
+//Converte as datas de ISO para comum
 export default function DateConvert(str, includeHour) {
   const date = new Date(str);
-
+  //Parâmetros para conversão
   var options = includeHour
     ? {
         year: "numeric",
