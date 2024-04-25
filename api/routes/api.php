@@ -1,9 +1,11 @@
 <?php
 
+use App\Mail\WelcomeMail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 /*
 Route::get('/user', function (Request $request) {
@@ -28,3 +30,7 @@ Route::middleware(['auth:api'])->group(function(){
 });
 
 Route::get('users', [UserController::class, 'getAll']);
+Route::get('send', function(){
+    Mail::to('email@sample.com')->send(new WelcomeMail());
+});
+Route::post('image', [PostController::class, 'StoreImage']);
