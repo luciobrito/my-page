@@ -15,11 +15,13 @@ Route::get('/user', function (Request $request) {
 //Rotas Anônimas
 Route::post('/register',[AuthController::class, 'Register']);
 Route::post('/login', [AuthController::class,'Login']);
-Route::get('/user/{username}', [UserController::class, 'Profile']);
+Route::get('/profile/{username}', [UserController::class, 'Profile']);
 //Rotas autenticadas
 Route::middleware(['auth:api'])->group(function(){
     Route::controller(UserController::class)->group(function(){
         Route::get('/self','Self');
+        //Configurações do usuário
+        Route::post('/settings/picture', 'UpdateProfilePicture');
     });
     Route::controller(PostController::class)->group(function(){
         Route::post('/post', 'Create');

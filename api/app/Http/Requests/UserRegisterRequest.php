@@ -3,7 +3,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
-class UserPostRequest extends FormRequest{
+class UserRegisterRequest extends FormRequest{
     public function rules(){
         return [
             'name' => 'required',
@@ -21,15 +21,18 @@ class UserPostRequest extends FormRequest{
 
             'data'      => $validator->errors()
 
-        ]));
+        ], 400));
     }
     public function messages(){
         return [
             'name.required' => 'Nome é obrigatório',
-            'username.min' => 'Nome de usuário é no mínimo 3 caracteres',
-            'username.unique' => 'Nome de usuário já existente',
+            'username.min' => 'Username é no mínimo 3 caracteres',
+            'username.unique' => 'Username já existente',
+            'username.required'=> 'Username é obrigatório',
+            'username.alpha_dash' => 'Somente letras e números',
             'email.unique' => 'Email já existente',
             'email.email' => 'Email é invalido',
+            'emai.required' => 'Email é obrigatório',
             'password.min' => 'Senha muito curta'
         ];
     }

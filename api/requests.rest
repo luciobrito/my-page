@@ -40,7 +40,7 @@ DELETE {{apiUrl}}/post/3
 Authorization: Bearer {{authToken}}
 
 ### User profile
-GET {{apiUrl}}/user/fulano8
+GET {{apiUrl}}/profile/johndoe
 
 ### Create User
 POST {{apiUrl}}/register

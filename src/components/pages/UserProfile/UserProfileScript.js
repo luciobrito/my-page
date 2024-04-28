@@ -29,7 +29,7 @@ export default {
       var username = route.params.username;
       //Atrasa a função de request 
       setTimeout(() => {
-        axios(`/user/${username}`)
+        axios(`/profile/${username}`)
           .then((response) => {
             this.user = response.data;
             /*Converte a data de ISO para comum */

@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Requests\UserPostRequest;
+use App\Http\Requests\UserRegisterRequest;
 use Exception;
 use Illuminate\Http\Request;
 use App\Models\User;
 class AuthController extends Controller
 {
-    public function Register(UserPostRequest $request){
+    public function Register(UserRegisterRequest $request){
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -24,7 +23,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $this->respondWithToken($token)
         ],201);}
-        else return response()->json(['message' => 'Usuário não pôde ser criado', 400]);
+        else return response()->json(['message' => 'Usuário não pôde ser criado'], 400);
     }
     public function Login(Request $request)
     {

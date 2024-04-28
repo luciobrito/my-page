@@ -47,15 +47,18 @@ class PostController extends Controller
     }
     public function StoreImage(Request $request)
     {
-        $validator = Validator::make($request->all(), 
-        ['image' => 'required|image:jpeg,png,jpg,gif,svg|max:2048']);
-        if ($validator->fails()) return response($validator->messages()->first(), 500);
+        $validator = Validator::make(
+            $request->all(),
+            ['image' => 'required|image:jpeg,png,jpg,gif,svg|max:2048']
+        );
+        if ($validator->fails())
+            return response($validator->messages()->first(), 500);
         $image = $request->file('image');
         //Busca a extensão original
         $extension = $image->getClientOriginalExtension();
         //Id único para a imagem + extensão original
-        $fileName = uniqid() . ".$extension";
+        $fileName = time() . uniqid() . ".$extension";
         $image_uploaded_path = $image->storeAs('public/posts', $fileName);
         return response('Imagem enviada com sucesso', 201);
-        }
+    }
 }

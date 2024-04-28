@@ -24,6 +24,3 @@
 
 <style scoped>
 </style>
-<script>
-
-</script>

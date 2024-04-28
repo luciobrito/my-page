@@ -34,14 +34,14 @@
           label="Senha"
           type="password"
           v-model="form.password"
-          :rules="[rules.required]"
+          :error-messages="error.password"
         ></v-text-field>
-        <v-text-field
+       <!-- <v-text-field
           label="Confirmar Senha"
           type="password"
           v-model="form.password_confirm"
           :rules="[rules.password_match, rules.required]"
-        ></v-text-field>
+        ></v-text-field>-->
         <v-checkbox
           color="primary"
           label="Concorda com os termos de uso?"
@@ -75,12 +75,15 @@ export default {
       error: {
         exists: false,
         message: null,
+        password: ""
       },
+      isFormValid: false,
       //Regras de validação do formulário
+      //Mudar para validação server-side!!!!
       rules: {
         required: (value) => !!value || "Campo obrigatório!",
         password_match: (value) =>
-          value == this.form.password || "Senhas não batem!",
+          value === this.form.password || "Senhas não batem!",
         username: (value) => {
           //Padrão permitido para o username:
           const pattern = /^[a-zA-Z0-9._]+$/;
@@ -106,7 +109,7 @@ export default {
         .catch((error) => {
           this.error.exists = true;
           this.error.message = ""; //Response message;
-          console.log(error);
+          console.log(error.response.data.data);
         })
         .finally(() => {
           this.loading = false;

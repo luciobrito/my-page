@@ -19,4 +19,8 @@ class Post extends Model
     {
         return $this->hasMany(PostView::class, 'post_id');
     }
+    public function PostImage()
+    {
+        return $this->hasMany(PostImage::class, 'post_id');
+    }
 }
