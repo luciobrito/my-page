@@ -23,17 +23,19 @@ class UserRegisterRequest extends FormRequest{
 
         ], 400));
     }
+    //Mensagens de erro
     public function messages(){
         return [
             'name.required' => 'Nome é obrigatório',
             'username.min' => 'Username é no mínimo 3 caracteres',
             'username.unique' => 'Username já existente',
-            'username.required'=> 'Username é obrigatório',
+            'username.required'=> 'Username já cadastrado',
             'username.alpha_dash' => 'Somente letras e números',
-            'email.unique' => 'Email já existente',
+            'email.unique' => 'Email já cadastrado',
             'email.email' => 'Email é invalido',
-            'emai.required' => 'Email é obrigatório',
-            'password.min' => 'Senha muito curta'
+            'email.required' => 'Email é obrigatório',
+            'password.required'=> 'Senha é obrigatória',
+            'password.min' => 'Senha muito curta, mínimo de 4 caracteres'
         ];
     }
 

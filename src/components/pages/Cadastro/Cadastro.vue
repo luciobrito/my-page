@@ -4,8 +4,7 @@
       title="Cadastre-se"
       class="form-cadastro-card"
       :loading="this.loading"
-    >
-    <!-- Erro no formulário, submit desativado mesmo com as duas senhas batendo-->
+    > 
       <v-form
         action=""
         v-on:submit.prevent="submitCadastro"
@@ -15,20 +14,20 @@
           label="Nome"
           placeholder="Usuario da Silva"
           v-model="form.name"
-          :rules="[rules.required]"
+          :error-messages="error.name"
         ></v-text-field>
         <v-text-field
           label="Email"
           placeholder="usuario@exemplo.com"
           type="email"
           v-model="form.email"
-          :rules="[rules.required]"
+          :error-messages="error.email"
         ></v-text-field>
         <v-text-field
           label="Username"
           placeholder="username123"
           v-model="form.username"
-          :rules="[rules.required, rules.username]"
+          :error-messages="error.username"
         ></v-text-field>
         <v-text-field
           label="Senha"
@@ -50,7 +49,6 @@
           color="primary"
           type="submit"
           :loading="this.loading"
-          :disabled="!isFormValid"
           >Confirmar</v-btn
         >
       </v-form>
@@ -68,18 +66,20 @@ export default {
         username: "",
         email: "",
         password: "",
-        password_confirm: "",
+        //password_confirm: "",
         submit_disabled: false,
       },
       loading: false,
       error: {
         exists: false,
         message: null,
+        name: "",
+        password: "",
+        email: "",
         password: ""
       },
       isFormValid: false,
-      //Regras de validação do formulário
-      //Mudar para validação server-side!!!!
+      
       rules: {
         required: (value) => !!value || "Campo obrigatório!",
         password_match: (value) =>
@@ -105,10 +105,15 @@ export default {
         .then((response) => {
           localStorage.setItem("token", response.data.access_token.original.access_token);
           console.log(response.data.access_token.original.access_token);
+          window.location.replace('/');
         })
         .catch((error) => {
           this.error.exists = true;
-          this.error.message = ""; //Response message;
+          const message = error.response.data.data;
+          this.error.name = message.name;
+          this.error.email = message.email;
+          this.error.password = message.password;
+          this.error.username = message.username;
           console.log(error.response.data.data);
         })
         .finally(() => {
