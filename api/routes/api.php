@@ -35,4 +35,4 @@ Route::get('users', [UserController::class, 'getAll']);
 Route::get('send', function(){
     Mail::to('email@sample.com')->send(new WelcomeMail());
 });
-Route::post('image', [PostController::class, 'StoreImage']);
+//Route::post('image', [PostController::class, 'StoreImage']);

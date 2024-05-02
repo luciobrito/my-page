@@ -7,12 +7,12 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-
+import { aliases, mdi } from 'vuetify/iconsets/mdi'
 axios.interceptors.response.use(response => {
     return response.headers['content-type'] === 'application/json' ? response : Promise.reject(response);
   }, error => Promise.reject(error));
-axios.defaults.baseURL = 'http://192.168.15.79:5173/api';
-
+axios.defaults.baseURL = 'http://localhost:5173/api';
+axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 
 const myTheme = {
   dark: true,
@@ -34,7 +34,14 @@ const vuetify = createVuetify({
     themes:{
       myTheme
     }
-  }
+  },
+  icons: {
+    defaultSet: 'mdi',
+    aliases,
+    sets: {
+      mdi,
+    },
+  },
 })
 
 createApp(App)

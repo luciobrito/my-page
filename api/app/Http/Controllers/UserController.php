@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\ProfileView;
 use App\Models\User;
 use App\Models\UserImage;
+use App\Models\ProfileView;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -43,21 +44,23 @@ class UserController extends Controller
         UserImage::select('name')->where('user_id', $user_data->id)->first();
         
         //Verifica se o perfil é do usuário logado
+      
         $is_current_user = Auth::check() ? Auth::user()->id == $user_data->id : false;
         
         //TODO: Transformar o cadastro de visualização em uma função
-        
         //Última visualização do IP
         $last_view_date = ProfileView::where('user_ip', $request->getClientIp())->orderByDesc('view_date')->first();
+        
         //Conta os segundos desde a última visualização do ip
-        $time_diff = time() - $last_view_date->view_date;
+        $time_diff = $last_view_date ? time() - $last_view_date->view_date : 1000;
+       
+       
         //Se não for o dono do perfil ou a diferença de tempo for maior que 60
         if(!$is_current_user && $time_diff > 60) 
             DB::table('profileview')
             ->insert([
             'user_ip'=> $request->getClientIp(), 
             'viewer_id'=> Auth::check() ? Auth::user()->id : null,
-            //Esse é o id do perfil
             'user_id' => $user_data->id,
             'view_date' => time()
         ]);
@@ -93,7 +96,7 @@ class UserController extends Controller
         
         //Excluir a foto antiga do usuário, se houver
         if($profilePicture){ 
-            File::delete("public/user_images/$profilePicture->name"); 
+            Storage::disk('public')->delete("users_images/$profilePicture->name");
             $profilePicture->delete();
         }
         

@@ -47,8 +47,8 @@ POST {{apiUrl}}/register
 Content-Type: application/json
 
 {
-    "name": "Fulano",
-    "username": "fulano8",
-    "email": "fulano@gmail.com",
+    "name": "John",
+    "username": "johndoe",
+    "email": "john@email.com",
     "password": "1234"
 }
