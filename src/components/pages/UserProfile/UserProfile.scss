@@ -1,0 +1,37 @@
+h1 {
+    text-align: left;
+  }
+  #bottom {
+    text-align: center;
+  }
+  @media screen and (max-width: 600px) {
+    h1,
+    .profile-picture,
+    .username {
+      text-align: center;
+    }
+  }
+  
+  @media screen and (min-width: 600px) {
+    $desktop-gap: 80%;
+    #posts-container {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+    #inner-posts-container {
+      width: $desktop-gap;
+    }
+    h1,
+    .profile-picture,
+    .username {
+      text-align: left;
+    }
+    #inner-profile-container {
+      width: $desktop-gap;
+    }
+    #outer-profile-container {
+      display: flex;
+      justify-content: center;
+    }
+  }

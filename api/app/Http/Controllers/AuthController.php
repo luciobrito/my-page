@@ -34,12 +34,14 @@ class AuthController extends Controller
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error_message'=> $error_message], 401);}
 
-        return $this->respondWithToken($token);
+        return $this->respondWithToken($token, $user->username);
     }
-    protected function respondWithToken($token)
+    protected function respondWithToken($token, $username)
     {
         return response()->json([
-            'access_token' => $token]);
+            'access_token' => $token,
+            'username' => $username
+        ]);
     }
 
 }

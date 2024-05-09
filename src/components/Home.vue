@@ -34,7 +34,7 @@ h1, h3 {
   }
 }
 @media screen and (max-width: 600px){
-  .card-container{
+  .card-container{ 
     flex-direction: column;
   }
   .card{

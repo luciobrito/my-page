@@ -8,10 +8,12 @@ import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
+
+
 axios.interceptors.response.use(response => {
     return response.headers['content-type'] === 'application/json' ? response : Promise.reject(response);
   }, error => Promise.reject(error));
-axios.defaults.baseURL = 'http://localhost:5173/api';
+axios.defaults.baseURL = import.meta.env.VITE_APIURL;
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 
 const myTheme = {

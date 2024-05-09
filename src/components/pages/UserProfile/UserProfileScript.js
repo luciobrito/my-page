@@ -4,11 +4,13 @@ import DateConvert from "../../../dateConverter";
 import LoadingSpinner from "../../modules/LoadingSpinner.vue";
 import UserNotFound from "../../error/UserNotFound.vue";
 import Error_500 from "../../error/Error_500.vue";
+import CreatePostModal from "./CreatePostModal.vue";
 export default {
   components: {
     LoadingSpinner,
     UserNotFound,
     Error_500,
+    CreatePostModal
   },
   data() {
     return {
@@ -20,6 +22,7 @@ export default {
         status: 0,
       },
       loading: false,
+      dialog: false
     };
   },
   methods: {
@@ -27,7 +30,6 @@ export default {
       this.loading = true;
       const route = useRoute();
       var username = route.params.username;
-      //Atrasa a função de request 
         axios(`/profile/${username}`)
           .then((response) => {
             this.user = response.data;

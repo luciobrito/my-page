@@ -48,7 +48,7 @@ class UserController extends Controller
         
         $user_posts = 
         Post::select('id','title', 'body', 'updated_at')
-        ->where('user_id', $user_data->id)->get();
+        ->where('user_id', $user_data->id)->orderByDesc('updated_at')->get();
         
         $user_image = 
         UserImage::select('name')

@@ -22,7 +22,7 @@
             Login
           </v-btn>
           <p style="text-align: center; margin: 0.4rem">
-            Ainda não tem uma conta? <a href="">Clique aqui</a>
+            Ainda não tem uma conta? <a href="/cadastro">Clique aqui</a>
           </p>
         </div>
       </form>
@@ -95,7 +95,7 @@ export default {
         })
         .then((response) => {
           localStorage.setItem('token', response.data.access_token);
-          window.location.replace("/");
+          window.location.replace(`/user/${response.data.username}`);
         })
         .catch((error) => {
           this.error.exist = true;
