@@ -17,7 +17,7 @@ Content-Type: application/json
 GET {{apiUrl}}/users
 
 ### GET current auth user
-GET {{apiUrl}}/user/self HTTP/1.1
+GET {{apiUrl}}/self HTTP/1.1
 Authorization: Bearer {{authToken}}
 
 
@@ -40,7 +40,8 @@ DELETE {{apiUrl}}/post/3
 Authorization: Bearer {{authToken}}
 
 ### User profile
-GET {{apiUrl}}/profile/johndoe
+GET {{apiUrl}}/profile/fulano
+Authorization: Bearer {{authToken}}
 
 ### Create User
 POST {{apiUrl}}/register

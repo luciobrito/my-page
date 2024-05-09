@@ -27,7 +27,17 @@ class UserController extends Controller
         ->json("Usuario criado com sucesso!", 201);
     }*/
     public function Self(){
-        return Auth::user();
+        $user = Auth::user();
+        $user_image = 
+        UserImage::select('name')
+        ->where('user_id', $user->id)
+        ->first()->name ?? null;
+        $response_object = [
+            'username' => $user->username,
+            'image' => $user_image,
+            'is_auth' => Auth::check()
+        ];
+        return $response_object;
     }
     public function Profile($username, Request $request){
         $user_data = 
@@ -41,21 +51,26 @@ class UserController extends Controller
         ->where('user_id', $user_data->id)->get();
         
         $user_image = 
-        UserImage::select('name')->where('user_id', $user_data->id)->first();
+        UserImage::select('name')
+        ->where('user_id', $user_data->id)
+        ->first()->name ?? null;
         
         //Verifica se o perfil é do usuário logado
-      
         $is_current_user = Auth::check() ? Auth::user()->id == $user_data->id : false;
-        
-        //TODO: Transformar o cadastro de visualização em uma função
-        //Última visualização do IP
-        $last_view_date = ProfileView::where('user_ip', $request->getClientIp())->orderByDesc('view_date')->first();
+    
+        //Última visualização do IP ao perfil da URL
+        $last_view_date = 
+          DB::table('profileview')
+        ->where('user_ip', $request->getClientIp())
+        ->where('user_id', $user_data->id)
+        ->orderByDesc('view_date')
+        ->first()
+        ->view_date ?? 1000;
         
         //Conta os segundos desde a última visualização do ip
-        $time_diff = $last_view_date ? time() - $last_view_date->view_date : 1000;
+        $time_diff = time() - $last_view_date;
        
-       
-        //Se não for o dono do perfil ou a diferença de tempo for maior que 60
+        //Se não for o dono do perfil e a diferença de tempo for maior que 60
         if(!$is_current_user && $time_diff > 60) 
             DB::table('profileview')
             ->insert([
@@ -69,7 +84,7 @@ class UserController extends Controller
             'name' => $user_data->name, 
             'username' => $user_data->username, 
             'joined_in' => $user_data->created_at,
-            'profile_picture' => $user_image ? $user_image->name : null,
+            'profile_picture' => $user_image,
             'is_current_user'=> $is_current_user,
             'posts' => $user_posts,
             'time_diff' => $time_diff

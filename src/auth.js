@@ -7,6 +7,7 @@ const decoded = !!token ? jwtDecode(token): false;
 const UnixTimeNow = Math.floor(Date.now() / 1000);
 //Verifica se a hora atual é maior ou menor que a hora de expiração
 const isValid = decoded.exp > UnixTimeNow;
+if(!isValid) localStorage.removeItem('token');
 //Se o token existir e for valido, Autenticado = true;
 export const isAuth = !!token && isValid ? true : false;
 
@@ -17,6 +18,6 @@ export function AuthOnlyRoute(to,from,next){
 }
 //Somente para usuários não autenticados
 export function AnonymousOnlyRoute(to,from, next){
-    if(isAuth) return next('/');
+    if(isAuth) return next('');
     else return next();
 }

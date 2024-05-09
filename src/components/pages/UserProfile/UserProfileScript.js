@@ -28,7 +28,6 @@ export default {
       const route = useRoute();
       var username = route.params.username;
       //Atrasa a função de request 
-      setTimeout(() => {
         axios(`/profile/${username}`)
           .then((response) => {
             this.user = response.data;
@@ -43,7 +42,6 @@ export default {
             this.error.status = error.response.status;
           })
           .finally(() => (this.loading = false));
-      }, 500);
     },
   },
   beforeMount() {

@@ -5,7 +5,8 @@
   <!--Código da página-->
   <div v-else>
     <!--Cabeçalho do perfil-->
-    <div style="margin: 1rem">
+    <div id="outer-profile-container">
+      <div id="inner-profile-container">
       <div class="profile-picture">
         <!--Se a foto de perfil estiver vazia-->
         <v-avatar
@@ -23,21 +24,22 @@
           class="rounded"
         ></v-avatar>
       </div>
+      
       <h1>{{ user.name }}</h1>
       <p class="username">
         <i>@{{ user.username }}</i>
       </p>
       <p>Entrou em: {{ user.joined_in }}</p>
-    </div>
+    </div></div>
     <p v-if="user.posts.length === 0">Nenhum post por enquanto...</p>
-
-    <div v-for="post in user.posts" :key="post.id" style="margin: 1rem">
+<div id="posts-container">
+    <div v-for="post in user.posts" :key="post.id" style=" margin: 1rem;"  id="inner-posts-container">
       <v-card
         :title="post.title"
         :subtitle="post.updated_at"
         :text="post.body"
       ></v-card>
-    </div>
+    </div></div>
     <p id="bottom">Fim</p>
   </div>
   <v-btn
@@ -52,11 +54,13 @@
 h1 {
   text-align: left;
 }
+#bottom{
+  text-align: center;
+}
 @media screen and (max-width: 600px) {
   h1,
   .profile-picture,
-  .username,
-  #bottom {
+  .username{
     text-align: center;
   }
 }
@@ -68,6 +72,29 @@ h1 {
   font-size: 18px;
   margin: 20px;
   cursor: pointer;
+}
+@media screen and (min-width: 600px){
+$desktop-gap: 80%;
+#posts-container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+#inner-posts-container{
+  width: $desktop-gap
+}
+h1,
+.profile-picture,
+.username{
+  text-align: left;
+}
+#inner-profile-container{
+  width: $desktop-gap;
+}
+#outer-profile-container{
+  display:flex; justify-content:center;
+}
+
 }
 </style>
 <script src="src/components/pages/UserProfile/UserProfileScript.js"></script>

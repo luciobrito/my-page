@@ -59,6 +59,6 @@ class PostController extends Controller
         //Id único para a imagem + extensão original
         $fileName = time() . uniqid() . ".$extension";
         $image_uploaded_path = $image->storeAs('public/posts', $fileName);
-        return response('Imagem enviada com sucesso', 201);
+        return response('Imagem enviada com sucesso', 201); 
     }
 }
