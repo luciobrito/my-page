@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\UserRegisterRequest;
 use Exception;
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UserRegisterRequest;
+
 class AuthController extends Controller
 {
     public function Register(UserRegisterRequest $request){
@@ -35,6 +37,9 @@ class AuthController extends Controller
             return response()->json(['error_message'=> $error_message], 401);}
 
         return $this->respondWithToken($token, $user->username);
+    }
+    public function Logout(){
+        Auth::logout();
     }
     protected function respondWithToken($token, $username)
     {

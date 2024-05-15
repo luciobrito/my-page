@@ -5,7 +5,7 @@
 
 <style lang="scss">
 .background{
-    background-color: rgba(0, 0, 0, 0.247);
+    background-color: rgb(22, 22, 22);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,8 +16,6 @@
     left: 0;
     top: 0;
     overflow: auto;
-    backdrop-filter: blur(5px);
--webkit-backdrop-filter: blur(5px);
 }
 .loader {
     width: 48px;

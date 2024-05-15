@@ -26,11 +26,10 @@
         </div>
 
         <h1>{{ user.name }}</h1>
-        <p class="username">
+        <div class="username">
           <i>@{{ user.username }}</i>
           <p>Entrou em: {{ user.joined_in }}</p>
-        </p>
-        
+        </div>
       </div>
     </div>
     <p v-if="user.posts.length === 0">Nenhum post por enquanto...</p>
@@ -41,15 +40,35 @@
         style="margin: 1rem"
         id="inner-posts-container"
       >
-        <v-card
-          :title="post.title"
-          :subtitle="post.updated_at"
-          :text="post.body"
-        ></v-card>
+        <v-card class="mx-auto">
+          <v-card-title style="display: flex"
+            ><h4>{{ post.title }}</h4>
+            <v-spacer></v-spacer>
+            <v-menu v-if="user.is_current_user">
+              <template v-slot:activator="{ props }">
+                <v-btn
+                  style=""
+                  icon="mdi-dots-vertical"
+                  v-bind="props"
+                  variant="text"
+                ></v-btn>
+              </template>
+
+              <v-list>
+                <v-list-item>
+                  <v-list-item-title><v-btn>Deletar Post</v-btn></v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu></v-card-title
+          >
+          <v-card-subtitle>{{ post.updated_at }}</v-card-subtitle>
+          <v-card-text>{{ post.body }}</v-card-text>
+        </v-card>
       </div>
     </div>
     <p id="bottom">Fim</p>
-  </div><!--
+  </div>
+  <!--
   <v-btn
     
     class="new-post-btn"
@@ -57,7 +76,7 @@
     size="large"
     color="primary"
   ></v-btn>-->
-  <CreatePostModal v-if="user.is_current_user"/>
+  <CreatePostModal v-if="user.is_current_user" />
 </template>
 <style lang="scss" src="./UserProfile.scss"></style>
 <script src="./UserProfileScript.js"></script>

@@ -28,6 +28,7 @@ Route::middleware(['auth:api'])->group(function(){
         Route::get('/posts/self', 'AuthUserPosts');
         Route::delete('/post/{id}', 'Delete');
     });
+    Route::get('/logout', [AuthController::class, 'Logout']);
     
 });
 
