@@ -1,0 +1,31 @@
+version: "3"
+services:
+  database:
+     image: mysql:latest
+     ports:
+       - "3306:3306"
+     environment:
+       MYSQL_ROOT_PASSWORD: 1234
+       MYSQL_DATABASE: mypage
+       MYSQL_USER: mypage
+       MYSQL_PASSWORD: 1234
+     volumes:
+       - /path/on/host:/var/lib/mysql
+     networks:
+       - mypage_default
+  api:
+    build: ./api
+    ports:
+        - "8000:8000"
+    networks:
+        - mypage_default
+    depends_on:
+        - database
+  front:
+      build: .
+      ports:
+        - "4173:4173"
+      networks:
+        - mypage_default
+networks:
+   mypage_default: {}
