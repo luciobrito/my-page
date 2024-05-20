@@ -22,7 +22,7 @@ services:
     depends_on:
         - database
   front:
-      build: .
+      build: ./front
       ports:
         - "4173:4173"
       networks:

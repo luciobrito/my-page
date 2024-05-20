@@ -23,7 +23,7 @@ class AuthController extends Controller
         'email' => $request->email,
         'password' => $request->password]);
         return response()->json([
-            'access_token' => $this->respondWithToken($token)
+            'access_token' => $this->respondWithToken($token, $request->username)
         ],201);}
         else return response()->json(['message' => 'Usuário não pôde ser criado'], 400);
     }
