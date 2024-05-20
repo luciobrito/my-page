@@ -9,7 +9,7 @@
         action=""
         v-on:submit.prevent="submitCadastro"
         v-model="isFormValid"
-      >
+      ><div style="margin: 10px;">
         <v-text-field
           label="Nome"
           placeholder="Usuario da Silva"
@@ -45,12 +45,14 @@
           color="primary"
           label="Concorda com os termos de uso?"
         ></v-checkbox>
+     
         <v-btn
           color="primary"
           type="submit"
           :loading="this.loading"
+          style="width: 100%;"
           >Confirmar</v-btn
-        >
+        > </div>
       </v-form>
     </v-card>
   </div>

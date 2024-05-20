@@ -1,8 +1,8 @@
 <template>
-  <div class="LoginBackground">
-    <v-card :loading="this.loading" title="Login">
+  <div class="form-login">
+    <v-card :loading="this.loading" title="Login" class="form-login-card">
       <form v-on:submit.prevent="submitLogin">
-        <div class="loginForm">
+        <div style="margin: 10px">
           <v-text-field
             label="Email"
             type="email"
@@ -18,6 +18,7 @@
             class="btn-form"
             color="primary"
             type="submit"
+            style="width: 100%;"
           >
             Login
           </v-btn>
@@ -28,7 +29,6 @@
       </form>
       <div  class="alert"><v-alert
         v-if="this.error.exist"
-        closable
         type="error"
         :text="this.error.message"
 
@@ -38,35 +38,24 @@
   </div>
 </template>
 <style lang="scss">
-$form-width: 22rem;
-@mixin flexbox-center{
-    display: flex;
+.form-login{
+  display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
   flex-direction: column;
-}
-
-.LoginBackground {
-    @include flexbox-center();
-  width: 100%;
-  height: 100%;
-  
-}
-.loginForm {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-form {
   padding: 10px;
-  width: $form-width;
-  button{
-    width: 100%;
-  }
 }
-.alert{
-    width: $form-width
+form{
+  width: 100%;
+}
+.form-login-card{
+  width: 100%;
+}
+@media screen and (min-width: 900px) {
+  .form-login-card{
+      width:30%
+  }
 }
 </style>
 <script>
